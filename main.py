@@ -4,7 +4,7 @@ import random
 
 # Подключение к OpenSearch
 client = OpenSearch(
-    hosts=[{"host": "localhost", "port": 9200}],
+    hosts=[{"host": "localhost", "port": 9200, "scheme": "http"}],
     http_auth=("admin", "admin"),  # в реальном проекте используйте .env!
     use_ssl=False,
     verify_certs=False,
