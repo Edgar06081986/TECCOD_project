@@ -4,7 +4,7 @@ import random
 
 # Подключение к OpenSearch
 client = OpenSearch(
-    hosts=[{"host": "localhost", "port": 9200, "scheme": "http"}],
+    hosts=[{"host": "opensearch", "port": 9200, "scheme": "http"}],
     http_auth=("admin", "admin"),  # в реальном проекте используйте .env!
     use_ssl=False,
     verify_certs=False,
@@ -35,9 +35,9 @@ def create_index():
 def generate_data(num_docs=5):
     fake = Faker()
     docs = []
-    for _ in range(num_docs):
+    for i in range(num_docs):
         doc = {
-            "title": fake.sentence(),
+            "title": fake.sentence() + (" science" if i == 0 else ""),
             "content": fake.text(),
             "content_type": random.choice(CONTENT_TYPES),
         }

@@ -11,5 +11,15 @@ services:
       - "9200:9200"
     volumes:
       - opensearch-data:/usr/share/opensearch/data
+  fastapi:
+    build: .
+    depends_on:
+      - opensearch
+    environment:
+      - OPENSEARCH_HOST=opensearch
+      - OPENSEARCH_USER=admin
+      - OPENSEARCH_PASS=admin
+    ports:
+      - "8000:8000"
 volumes:
   opensearch-data:
